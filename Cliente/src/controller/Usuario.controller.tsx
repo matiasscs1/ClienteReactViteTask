@@ -1,10 +1,10 @@
 import { Usuario } from "../model/Usuario.model.tsx";
-import axios from '../model/axios.js';
+import axios from 'axios';
 
 // Crear usuario
 export const crearUsuario = async (usuario: Usuario): Promise<boolean> => {
     try {
-        const response = await axios.post('/usuario', {
+        const response = await axios.post('http://localhost:3000/usuario', {
             nombre: usuario.nombre || '',
             apellido: usuario.apellido || ''
         });
@@ -18,7 +18,7 @@ export const crearUsuario = async (usuario: Usuario): Promise<boolean> => {
 // Obtener todos los usuarios
 export const obtenerUsuarios = async (): Promise<Usuario[]> => {
     try {
-        const response = await axios.get('/usuario');
+        const response = await axios.get('http://localhost:3000/usuario');
         return response.data;
     } catch (error) {
         console.error('Error al obtener los usuarios:', error);
@@ -29,7 +29,7 @@ export const obtenerUsuarios = async (): Promise<Usuario[]> => {
 // Modificar usuario
 export const modificarUsuario = async (id: string, usuario: Usuario): Promise<boolean> => {
     try {
-        const response = await axios.put(`/usuario/${id}`, {
+        const response = await axios.put(`http://localhost:3000/usuario/${id}`, {
             nombre: usuario.nombre || '',
             apellido: usuario.apellido || ''
         });
@@ -43,7 +43,7 @@ export const modificarUsuario = async (id: string, usuario: Usuario): Promise<bo
 // Eliminar usuario
 export const eliminarUsuario = async (id: string): Promise<boolean> => {
     try {
-        const response = await axios.delete(`/usuario/${id}`);
+        const response = await axios.delete(`http://localhost:3000/usuario/${id}`);
         return true;
     } catch (error) {
         console.error('Error al eliminar el usuario:', error);

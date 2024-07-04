@@ -1,12 +1,12 @@
 import {Tarea} from '../model/Tareas.model.ts';
-import axios from '../model/axios.js';
+import axios from 'axios';
 
 
 
 // Crear tarea
 export const crearTarea = async (tarea: Tarea): Promise<boolean> => {
     try {
-        await axios.post('/tarea', {
+        await axios.post('http://localhost:3000/tarea', {
             id_usuario: tarea.id_usuario,
             nombre_proyecto: tarea.nombre_proyecto,
             descripcion: tarea.descripcion,
@@ -24,7 +24,7 @@ export const crearTarea = async (tarea: Tarea): Promise<boolean> => {
 // Obtener todas las tareas
 export const obtenerTareas = async (): Promise<Tarea[]> => {
     try {
-        const response = await axios.get('/tarea');
+        const response = await axios.get('http://localhost:3000/tarea');
         return response.data;
     } catch (error) {
         console.error('Error al obtener las tareas:', error);
@@ -35,7 +35,7 @@ export const obtenerTareas = async (): Promise<Tarea[]> => {
 // Modificar tarea
 export const modificarTarea = async (id: string, tarea: Tarea): Promise<boolean> => {
     try {
-        await axios.put(`/tarea/${id}`, {
+        await axios.put(`http://localhost:3000/tarea/${id}`, {
             id_usuario: tarea.id_usuario,
             nombre_proyecto: tarea.nombre_proyecto,
             descripcion: tarea.descripcion,
@@ -53,7 +53,7 @@ export const modificarTarea = async (id: string, tarea: Tarea): Promise<boolean>
 // Eliminar tarea
 export const eliminarTarea = async (id: string): Promise<boolean> => {
     try {
-        await axios.delete(`/tarea/${id}`);
+        await axios.delete(`http://localhost:3000/tarea/${id}`);
         return true;
     } catch (error) {
         console.error('Error al eliminar la tarea:', error);
@@ -64,7 +64,7 @@ export const eliminarTarea = async (id: string): Promise<boolean> => {
 // Verificar todas las tareas con días pasados y en progreso
 export const verificarTodasLasTareas = async (fecha_fin: string): Promise<Tarea[]> => {
     try {
-        const response = await axios.post('/verificar', { fecha_fin });
+        const response = await axios.post('http://localhost:3000/verificar', { fecha_fin });
         return response.data;
     } catch (error) {
         console.error('Error al verificar las tareas:', error);
