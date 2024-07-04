@@ -1,7 +1,8 @@
-import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
-
-export default defineConfig({
-  plugins: [react()],
-  // Añade aquí cualquier configuración adicional necesaria
-});
+// vite.config.js
+export default {
+  build: {
+    rollupOptions: {
+      external: ['axios']
+    }
+  }
+}
